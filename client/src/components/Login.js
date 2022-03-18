@@ -1,33 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 
-function Login() {
+function Login({ setLogin }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <form>
-      <div class="row mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">
+      <div className="row mb-3">
+        <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
           Email
         </label>
-        <div class="col-sm-10">
-          <input type="email" class="form-control" id="inputEmail3"></input>
+        <div className="col-sm-6">
+          <input type="email" className="form-control" id="inputEmail3"></input>
         </div>
       </div>
-      <div class="row mb-3">
-        <label for="inputPassword3" class="col-sm-2 col-form-label">
+      <div className="row mb-3">
+        <label
+          htmlFor="inputPassword3"
+          className="col-sm-2 col-form-label"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        >
           Password
         </label>
-        <div class="col-sm-10">
+        <div className="col-sm-6">
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             id="inputPassword3"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           ></input>
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" className="btn btn-primary">
         Log in
+      </button>
+      <br></br>
+      <br></br>
+      <button
+        onClick={() => setLogin(false)}
+        className="btn btn-primary btn-sm"
+      >
+        Don't have an account? Sign up!
       </button>
     </form>
   );

@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
 
-  def create
+    def index
+      render json: User.all
+    end
+
+
+    def create
       user = User.create!(user_params)
       session[:user_id] = user.id
       render json: user, status: :created
@@ -14,6 +19,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-      params.permit(:username, :email, :password, :password_confirmation, :profile_picture, :first_name, :last_name, :is_admin)
+      params.permit(:username, :email, :password, :password_confirmation, :profile_picture, :first_name, :last_name)
     end
 end

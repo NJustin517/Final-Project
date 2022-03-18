@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 import Signup from "./Signup";
 
-function EnterSite() {
-  return <Signup />;
+function EnterSite({ setUser }) {
+  const [login, setLogin] = useState(true);
+
+  return (
+    <>
+      {login ? (
+        <Login setLogin={setLogin} setUser={setUser} />
+      ) : (
+        <Signup setLogin={setLogin} setUser={setUser} />
+      )}
+    </>
+  );
 }
 
 export default EnterSite;

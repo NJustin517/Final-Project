@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Switch, Route, Redirect } from "react-router-dom";
 import bootstrap from "bootstrap";
@@ -12,10 +12,17 @@ import Home from "./components/Home";
 import EnterSite from "./components/EnterSite";
 
 function App() {
-  const [user, setUser] = useState("null");
+  const [user, setUser] = useState(null);
 
-  if (user) {
-  }
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+
   return (
     <>
       {user ? (
@@ -41,7 +48,7 @@ function App() {
       ) : (
         <Switch>
           <Route path="/enter">
-            <EnterSite />
+            <EnterSite setUser={setUser} />
           </Route>
           <Route path="/">
             <Welcome />
