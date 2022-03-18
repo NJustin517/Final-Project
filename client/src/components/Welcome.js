@@ -11,6 +11,9 @@ function Welcome() {
         alt="Inner Peace"
         className="welcome_image"
       ></img>
+      <Link to="/enter" className="btn btn-primary btn-lg login_btn">
+        Login/Signup
+      </Link>
     </div>
   );
 }
