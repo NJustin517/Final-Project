@@ -10,6 +10,7 @@ import Welcome from "./components/Welcome";
 import Profile from "./components/Profile";
 import Home from "./components/Home";
 import EnterSite from "./components/EnterSite";
+import NewPost from "./components/NewPost";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,8 +34,11 @@ function App() {
               <Route path="/enter">
                 <EnterSite />
               </Route>
+              <Route path="/profile/new_post">
+                <NewPost />
+              </Route>
               <Route path="/profile">
-                <Profile />
+                <Profile user={user} setUser={setUser} />
               </Route>
               <Route path="/welcome">
                 <Welcome />
