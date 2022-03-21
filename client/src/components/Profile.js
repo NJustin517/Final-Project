@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import PostCard from "./PostCard";
 
-function Profile({ user, setUser }) {
+function Profile({ user, setUser, handleRerender }) {
   function handleLogOut() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
@@ -13,7 +13,7 @@ function Profile({ user, setUser }) {
   }
 
   const userPosts = user.posts.map((p) => {
-    return <PostCard key={p.id} post={p} />;
+    return <PostCard key={p.id} post={p} handleRerender={handleRerender} />;
   });
 
   return (

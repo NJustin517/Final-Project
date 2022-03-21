@@ -24,7 +24,7 @@ function App() {
     });
   }, []);
 
-  function handleNewPost() {
+  function handleRerender() {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
@@ -43,10 +43,14 @@ function App() {
                 <EnterSite />
               </Route>
               <Route path="/profile/new_post">
-                <NewPost user_id={user.id} handleNewPost={handleNewPost} />
+                <NewPost user_id={user.id} handleRerender={handleRerender} />
               </Route>
               <Route path="/profile">
-                <Profile user={user} setUser={setUser} />
+                <Profile
+                  user={user}
+                  setUser={setUser}
+                  handleRerender={handleRerender}
+                />
               </Route>
               <Route path="/welcome">
                 <Welcome />

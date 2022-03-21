@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 
-function NewPost({ user_id, handleNewPost }) {
+function NewPost({ user_id, handleRerender }) {
   const [imageURL, setImageURL] = useState("");
   const [caption, setCaption] = useState("");
 
@@ -25,7 +25,7 @@ function NewPost({ user_id, handleNewPost }) {
           console.log(data);
           setImageURL("");
           setCaption("");
-          handleNewPost();
+          handleRerender();
         });
       }
     });
