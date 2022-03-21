@@ -24,6 +24,14 @@ function App() {
     });
   }, []);
 
+  function handleNewPost() {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }
+
   return (
     <>
       {user ? (
@@ -35,7 +43,7 @@ function App() {
                 <EnterSite />
               </Route>
               <Route path="/profile/new_post">
-                <NewPost />
+                <NewPost user_id={user.id} handleNewPost={handleNewPost} />
               </Route>
               <Route path="/profile">
                 <Profile user={user} setUser={setUser} />

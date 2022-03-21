@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
+import PostCard from "./PostCard";
 
 function Profile({ user, setUser }) {
   function handleLogOut() {
@@ -10,6 +11,10 @@ function Profile({ user, setUser }) {
       }
     });
   }
+
+  const userPosts = user.posts.map((p) => {
+    return <PostCard key={p.id} post={p} />;
+  });
 
   return (
     <div>
@@ -24,11 +29,7 @@ function Profile({ user, setUser }) {
       </Link>
       <br></br>
       <br></br>
-      <img
-        src="https://imgs.search.brave.com/8mUbDIyY_-F-3CzUs45bscKbO-0mBWSo4Bml45F_6fA/rs:fit:316:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5O/em1xMEJ3d2VENEpO/eWUxTTlFVDhRSGFM/SCZwaWQ9QXBp"
-        alt="Inner Peace"
-        style={{ width: "100%" }}
-      ></img>
+      {user.posts.length !== 0 ? userPosts : <h1>There are no posts!</h1>}
     </div>
   );
 }
