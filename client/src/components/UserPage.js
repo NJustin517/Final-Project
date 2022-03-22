@@ -3,23 +3,51 @@ import ReactDOM from "react-dom";
 import { Link, useParams } from "react-router-dom";
 
 function UserPage() {
-  const [searchedUser, setSearchedUser] = useState({ username: "" });
+  const [userFound, setUserFound] = useState("");
+  const [loadedUser, setLoadedUser] = useState(null);
 
   const { username } = useParams();
-  console.log(searchedUser);
+  if (username !== userFound) {
+    setUserFound(username);
+  }
 
-  if (username !== searchedUser.username) {
+  useEffect(() => {
     fetch(`/search/${username}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data !== null) {
-          setSearchedUser(data);
-        }
+        setLoadedUser(data);
       });
-  }
+  }, [userFound]);
 
-  return <h1>UserPage Page</h1>;
+  // useEffect(() => {
+  //   if (loadedUser) {
+  //     setUserFound(true);
+  //   } else {
+  //     setUserFound(false);
+  //   }
+  // }, [loadedUser]);
+
+  // function getUser() {
+  //   fetch(`/search/${username}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setLoadedUser(data);
+  //     });
+  // }
+
+  // getUser();
+
+  return (
+    <>
+      {loadedUser === null ? (
+        <h3>User not found</h3>
+      ) : (
+        <h3>{loadedUser.username} found!</h3>
+      )}
+    </>
+  );
 }
 
 export default UserPage;

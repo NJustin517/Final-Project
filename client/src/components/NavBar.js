@@ -9,14 +9,6 @@ function NavBar() {
 
   function handleSearch(e) {
     e.preventDefault();
-    // fetch(`/search/${search}`)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     setSearch("");
-    //     history.push("/userPage");
-    //   });
-    setSearch("");
     history.push(`/user/${search}`);
   }
 
