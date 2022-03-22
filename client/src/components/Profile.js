@@ -18,7 +18,22 @@ function Profile({ user, setUser, handleRerender }) {
 
   return (
     <div>
-      <h1>Here's your profile, {user.username}!</h1>
+      <img
+        src={user.profile_picture}
+        alt="Profile Picture"
+        style={{
+          width: "10%",
+          marginTop: "10px",
+          marginRight: "10px",
+          float: "left",
+        }}
+      ></img>
+      <h1>{user.username}</h1>
+      <button type="button" className="btn btn-primary">
+        Edit Profile
+      </button>
+      <br></br>
+      <br></br>
       <button onClick={handleLogOut} type="button" className="btn btn-primary">
         Log Out
       </button>

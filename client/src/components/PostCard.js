@@ -33,18 +33,29 @@ function PostCard({ post, handleRerender }) {
   }
 
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="card" style={{ width: "30rem" }}>
       <img src={post.image} className="card-img-top" alt="..."></img>
       <div className="card-body">
-        <h6 className="card-title">Username Stand-in</h6>
+        <h6 className="card-title">{post.username}</h6>
         <p className="card-text">{post.caption}</p>
         <a className="btn btn-primary" onClick={handleLike}>
           ♥
         </a>
-        <p>{post.likes} Likes</p>
-        <a className="btn btn-danger" onClick={handleDeletePost}>
+        <a
+          className="btn btn-danger"
+          onClick={handleDeletePost}
+          style={{ float: "right" }}
+        >
           Delete
         </a>
+        <p>{post.likes} Likes</p>
+        {/* <a
+          className="btn btn-danger"
+          onClick={handleDeletePost}
+          style={{ float: "right" }}
+        >
+          Delete
+        </a> */}
       </div>
     </div>
   );

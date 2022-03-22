@@ -11,6 +11,7 @@ import Profile from "./components/Profile";
 import Home from "./components/Home";
 import EnterSite from "./components/EnterSite";
 import NewPost from "./components/NewPost";
+import UserPage from "./components/UserPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -54,6 +55,9 @@ function App() {
               </Route>
               <Route path="/welcome">
                 <Welcome />
+              </Route>
+              <Route path="/user/:username">
+                <UserPage />
               </Route>
               <Route path="/">
                 <Home />

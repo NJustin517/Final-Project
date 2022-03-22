@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function NavBar() {
+  const [search, setSearch] = useState("");
+  console.log(search);
+  const history = useHistory();
+
+  function handleSearch(e) {
+    e.preventDefault();
+    // fetch(`/search/${search}`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     setSearch("");
+    //     history.push("/userPage");
+    //   });
+    setSearch("");
+    history.push(`/user/${search}`);
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -74,12 +91,14 @@ function NavBar() {
               </ul>
             </li>
           </ul>
-          <form className="d-flex">
+          <form className="d-flex" onSubmit={handleSearch}>
             <input
               className="form-control me-2"
               type="search"
               placeholder="Search Users"
               aria-label="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             ></input>
             <button className="btn btn-outline-success" type="submit">
               Search
