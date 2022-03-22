@@ -57,7 +57,7 @@ function App() {
                 <Welcome />
               </Route>
               <Route path="/user/:username">
-                <UserPage />
+                <UserPage handleRerender={handleRerender} />
               </Route>
               <Route path="/">
                 <Home />
