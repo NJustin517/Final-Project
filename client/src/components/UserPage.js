@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Link, useParams } from "react-router-dom";
 import PostCard from "./PostCard";
 
-function UserPage({ handleRerender }) {
+function UserPage({ handleRerender, user }) {
   const [userFound, setUserFound] = useState("");
   const [loadedUser, setLoadedUser] = useState(null);
 
@@ -14,8 +14,16 @@ function UserPage({ handleRerender }) {
 
   let userPosts;
   if (loadedUser) {
+    console.log(loadedUser);
     userPosts = loadedUser.posts.map((p) => {
-      return <PostCard key={p.id} post={p} handleRerender={handleRerender} />;
+      return (
+        <PostCard
+          key={p.id}
+          post={p}
+          handleRerender={handleRerender}
+          user={user}
+        />
+      );
     });
   }
 
@@ -27,6 +35,28 @@ function UserPage({ handleRerender }) {
         setLoadedUser(data);
       });
   }, [userFound]);
+
+  function handleFollow() {
+    fetch("/follows", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_id: user.id, follow_id: loadedUser.id }),
+    })
+      .then((r) => r.json())
+      .then((res) => console.log(res));
+  }
+
+  function handleUnfollow() {
+    fetch(`/follows/${loadedUser.id}`, {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        console.log("Unfollowed");
+      }
+    });
+  }
 
   return (
     <>
@@ -44,7 +74,23 @@ function UserPage({ handleRerender }) {
               float: "left",
             }}
           ></img>
-          <h1 style={{ marginBottom: "10%" }}>{loadedUser.username}</h1>
+          <h1>{loadedUser.username}</h1>
+          <button
+            type="button"
+            className="btn btn-primary"
+            style={{ marginBottom: "6%" }}
+            onClick={handleFollow}
+          >
+            Follow
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            style={{ marginBottom: "6%" }}
+            onClick={handleUnfollow}
+          >
+            Unfollow
+          </button>
           {userPosts}
         </>
       )}

@@ -4,7 +4,6 @@ import { Link, useHistory } from "react-router-dom";
 
 function NavBar() {
   const [search, setSearch] = useState("");
-  console.log(search);
   const history = useHistory();
 
   function handleSearch(e) {
@@ -50,7 +49,7 @@ function NavBar() {
                 Profile
               </Link>
             </li>
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 href="#"
@@ -81,7 +80,7 @@ function NavBar() {
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> */}
           </ul>
           <form className="d-flex" onSubmit={handleSearch}>
             <input

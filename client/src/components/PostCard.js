@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
+import Comments from "./Comments";
 
-function PostCard({ post, handleRerender }) {
+function PostCard({ post, handleRerender, user }) {
   const [likes, setLikes] = useState(post.likes);
 
   function handleDeletePost() {
@@ -41,14 +42,17 @@ function PostCard({ post, handleRerender }) {
         <a className="btn btn-primary" onClick={handleLike}>
           ♥
         </a>
-        <a
-          className="btn btn-danger"
-          onClick={handleDeletePost}
-          style={{ float: "right" }}
-        >
-          Delete
-        </a>
-        <p>{post.likes} Likes</p>
+        {post.username === user.username ? (
+          <a
+            className="btn btn-danger"
+            onClick={handleDeletePost}
+            style={{ float: "right" }}
+          >
+            Delete
+          </a>
+        ) : (
+          <p></p>
+        )}
         {/* <a
           className="btn btn-danger"
           onClick={handleDeletePost}
@@ -56,6 +60,8 @@ function PostCard({ post, handleRerender }) {
         >
           Delete
         </a> */}
+        <p>{post.likes} Likes</p>
+        <Comments post={post} user={user} handleRerender={handleRerender} />
       </div>
     </div>
   );

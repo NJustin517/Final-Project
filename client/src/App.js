@@ -57,10 +57,10 @@ function App() {
                 <Welcome />
               </Route>
               <Route path="/user/:username">
-                <UserPage handleRerender={handleRerender} />
+                <UserPage user={user} handleRerender={handleRerender} />
               </Route>
               <Route path="/">
-                <Home />
+                <Home user={user} />
               </Route>
             </Switch>
           </main>

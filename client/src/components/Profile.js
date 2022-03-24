@@ -13,8 +13,17 @@ function Profile({ user, setUser, handleRerender }) {
   }
 
   const userPosts = user.posts.map((p) => {
-    return <PostCard key={p.id} post={p} handleRerender={handleRerender} />;
+    return (
+      <PostCard
+        key={p.id}
+        post={p}
+        handleRerender={handleRerender}
+        user={user}
+      />
+    );
   });
+
+  console.log(userPosts);
 
   return (
     <div>

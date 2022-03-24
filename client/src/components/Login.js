@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function Login({ setLogin, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   console.log(email);
+
+  const history = useHistory();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,7 +19,10 @@ function Login({ setLogin, setUser }) {
       body: JSON.stringify({ email, password }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => {
+          setUser(user);
+          history.push("/profile");
+        });
       }
     });
   }
