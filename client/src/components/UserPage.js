@@ -6,6 +6,7 @@ import PostCard from "./PostCard";
 function UserPage({ handleRerender, user }) {
   const [userFound, setUserFound] = useState("");
   const [loadedUser, setLoadedUser] = useState(null);
+  console.log(user);
 
   const { username } = useParams();
   if (username !== userFound) {
@@ -49,7 +50,8 @@ function UserPage({ handleRerender, user }) {
   }
 
   function handleUnfollow() {
-    fetch(`/follows/${loadedUser.id}`, {
+    const follow = user.follows.find((f) => f.follow_id === loadedUser.id);
+    fetch(`/follows/${follow.id}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
