@@ -70,7 +70,7 @@ function UserPage({ handleRerender, user }) {
             src={loadedUser.profile_picture}
             alt="Profile Picture"
             style={{
-              width: "10%",
+              width: "10rem",
               marginTop: "10px",
               marginRight: "10px",
               float: "left",

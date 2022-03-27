@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function Comments({ post, user, handleRerender }) {
   const [newComment, setNewComment] = useState("");
   const commentCards = [];
+  const history = useHistory();
+
+  function handleProfile(name) {
+    history.push(`/user/${name}`);
+  }
 
   if (post.comments.length > 0) {
     post.comments.forEach((c) => {
       commentCards.push(
         <div>
+          <b
+            style={{ float: "left", marginRight: "15px", cursor: "pointer" }}
+            onClick={() => handleProfile(c.username)}
+          >
+            {c.username}:
+          </b>
           <p>{c.comment_text}</p>
           <hr
             style={{
@@ -34,6 +45,7 @@ function Comments({ post, user, handleRerender }) {
       body: JSON.stringify({
         post_id: post.id,
         user_id: user.id,
+        username: user.username,
         comment_text: newComment,
         likes: 0,
       }),
@@ -72,6 +84,14 @@ function Comments({ post, user, handleRerender }) {
           data-bs-parent="#accordionFlushExample"
         >
           <div className="accordion-body">
+            <hr
+              style={{
+                height: "2px",
+                borderWidth: "0",
+                color: "gray",
+                backgroundColor: "gray",
+              }}
+            ></hr>
             {commentCards.length > 0 ? commentCards : <p>No Comments!</p>}
             <form className="d-flex" onSubmit={handleAddComment}>
               <input

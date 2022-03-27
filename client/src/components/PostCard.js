@@ -34,7 +34,10 @@ function PostCard({ post, handleRerender, user }) {
   }
 
   return (
-    <div className="card" style={{ width: "30rem" }}>
+    <div
+      className="card"
+      style={{ width: "45rem", marginTop: "2rem", marginLeft: "25%" }}
+    >
       <img src={post.image} className="card-img-top" alt="..."></img>
       <div className="card-body">
         <h6 className="card-title">{post.username}</h6>

@@ -27,30 +27,37 @@ function Profile({ user, setUser, handleRerender }) {
 
   return (
     <div>
+      <Link
+        to="/profile/new_post"
+        className="btn btn-primary"
+        style={{ float: "right", marginTop: "15px", marginRight: "30px" }}
+      >
+        New Post +
+      </Link>
       <img
         src={user.profile_picture}
         alt="Profile Picture"
         style={{
-          width: "10%",
+          width: "10rem",
           marginTop: "10px",
           marginRight: "10px",
           float: "left",
         }}
       ></img>
       <h1>{user.username}</h1>
-      <button type="button" className="btn btn-primary">
+      <button
+        type="button"
+        className="btn btn-primary"
+        style={{ marginBottom: "5px" }}
+      >
         Edit Profile
       </button>
       <br></br>
-      <br></br>
-      <button onClick={handleLogOut} type="button" className="btn btn-primary">
+      <button onClick={handleLogOut} type="button" className="btn btn-danger">
         Log Out
       </button>
       <br></br>
       <br></br>
-      <Link to="/profile/new_post" className="btn btn-primary">
-        New Post
-      </Link>
       <br></br>
       <br></br>
       {user.posts.length !== 0 ? userPosts : <h1>There are no posts!</h1>}

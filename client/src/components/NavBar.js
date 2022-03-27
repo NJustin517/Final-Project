@@ -86,7 +86,7 @@ function NavBar() {
             <input
               className="form-control me-2"
               type="search"
-              placeholder="Search Users"
+              placeholder="User (case sesitive)"
               aria-label="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
