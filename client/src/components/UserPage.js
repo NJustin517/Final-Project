@@ -6,7 +6,25 @@ import PostCard from "./PostCard";
 function UserPage({ handleRerender, user }) {
   const [userFound, setUserFound] = useState("");
   const [loadedUser, setLoadedUser] = useState(null);
-  console.log(loadedUser);
+  const [found, setFound] = useState(false);
+  console.log(user);
+
+  useEffect(() => {
+    const find = user.follows.find((f) => {
+      if (loadedUser) {
+        return f.follow_id === loadedUser.id;
+      }
+    });
+    if (find) {
+      setFound(true);
+    }
+  }, [loadedUser]);
+  // const found = user.follows.find((f) => {
+  //   if (loadedUser) {
+  //     return f.follow_id === loadedUser.id;
+  //   }
+  // });
+  // console.log(found);
 
   const { username } = useParams();
   if (username !== userFound) {
@@ -15,8 +33,7 @@ function UserPage({ handleRerender, user }) {
 
   let userPosts;
   if (loadedUser) {
-    console.log(loadedUser);
-    userPosts = loadedUser[0].posts.map((p) => {
+    userPosts = loadedUser.posts.map((p) => {
       return (
         <PostCard
           key={p.id}
@@ -29,7 +46,7 @@ function UserPage({ handleRerender, user }) {
   }
 
   useEffect(() => {
-    fetch(`/search/${username}`)
+    fetch(`/user/${username}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -37,27 +54,31 @@ function UserPage({ handleRerender, user }) {
       });
   }, [userFound]);
 
-  function handleFollow() {
-    fetch("/follows", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ user_id: user.id, follow_id: loadedUser.id }),
-    })
-      .then((r) => r.json())
-      .then((res) => console.log(res));
-  }
-
-  function handleUnfollow() {
-    const follow = user.follows.find((f) => f.follow_id === loadedUser.id);
-    fetch(`/follows/${follow.id}`, {
-      method: "DELETE",
-    }).then((res) => {
-      if (res.ok) {
-        console.log("Unfollowed");
-      }
-    });
+  function handleClick() {
+    if (!found) {
+      fetch("/follows", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_id: user.id, follow_id: loadedUser.id }),
+      })
+        .then((r) => r.json())
+        .then((res) => {
+          setFound(!found);
+          handleRerender();
+        });
+    } else {
+      const follow = user.follows.find((f) => f.follow_id === loadedUser.id);
+      fetch(`/follows/${follow.id}`, {
+        method: "DELETE",
+      }).then((res) => {
+        if (res.ok) {
+          setFound(!found);
+          handleRerender();
+        }
+      });
+    }
   }
 
   return (
@@ -67,7 +88,7 @@ function UserPage({ handleRerender, user }) {
       ) : (
         <>
           <img
-            src={loadedUser[0].profile_picture}
+            src={loadedUser.profile_picture}
             alt="Profile Picture"
             style={{
               width: "10rem",
@@ -76,22 +97,14 @@ function UserPage({ handleRerender, user }) {
               float: "left",
             }}
           ></img>
-          <h1>{loadedUser[0].username}</h1>
+          <h1>{loadedUser.username}</h1>
           <button
             type="button"
             className="btn btn-primary"
             style={{ marginBottom: "6%" }}
-            onClick={handleFollow}
+            onClick={handleClick}
           >
-            Follow
-          </button>
-          <button
-            type="button"
-            className="btn btn-primary"
-            style={{ marginBottom: "6%" }}
-            onClick={handleUnfollow}
-          >
-            Unfollow
+            {found ? "Unfollow" : "Follow"}
           </button>
           {userPosts}
         </>

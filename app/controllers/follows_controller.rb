@@ -1,5 +1,9 @@
 class FollowsController < ApplicationController
 
+  def index
+    render json: Follow.all
+  end
+
   def create
     follow = Follow.create!(follow_params)
     render json: follow, status: :created

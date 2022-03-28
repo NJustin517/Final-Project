@@ -14,7 +14,7 @@ function Comments({ post, user, handleRerender }) {
   if (post.comments.length > 0) {
     post.comments.forEach((c) => {
       commentCards.push(
-        <div>
+        <div key={c.id}>
           <b
             style={{ float: "left", marginRight: "15px", cursor: "pointer" }}
             onClick={() => handleProfile(c.username)}
