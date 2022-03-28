@@ -8,7 +8,7 @@ function NavBar() {
 
   function handleSearch(e) {
     e.preventDefault();
-    history.push(`/user/${search}`);
+    history.push(`/search/${search}`);
   }
 
   return (
@@ -86,7 +86,7 @@ function NavBar() {
             <input
               className="form-control me-2"
               type="search"
-              placeholder="User (case sesitive)"
+              placeholder="Search Users"
               aria-label="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}

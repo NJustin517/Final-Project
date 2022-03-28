@@ -20,6 +20,11 @@ class UsersController < ApplicationController
       render json: user, status: :ok
     end
 
+    def search
+      users = User.where("lower(username) LIKE ?", "%" + params[:searchterm].downcase + "%")
+      render json: users, status: :ok
+    end
+
     def follows
       user = User.find_by(id: session[:user_id])
       follows = user.follow_profiles

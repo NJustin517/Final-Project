@@ -6,7 +6,7 @@ import PostCard from "./PostCard";
 function UserPage({ handleRerender, user }) {
   const [userFound, setUserFound] = useState("");
   const [loadedUser, setLoadedUser] = useState(null);
-  console.log(user);
+  console.log(loadedUser);
 
   const { username } = useParams();
   if (username !== userFound) {
@@ -16,7 +16,7 @@ function UserPage({ handleRerender, user }) {
   let userPosts;
   if (loadedUser) {
     console.log(loadedUser);
-    userPosts = loadedUser.posts.map((p) => {
+    userPosts = loadedUser[0].posts.map((p) => {
       return (
         <PostCard
           key={p.id}
@@ -67,7 +67,7 @@ function UserPage({ handleRerender, user }) {
       ) : (
         <>
           <img
-            src={loadedUser.profile_picture}
+            src={loadedUser[0].profile_picture}
             alt="Profile Picture"
             style={{
               width: "10rem",
@@ -76,7 +76,7 @@ function UserPage({ handleRerender, user }) {
               float: "left",
             }}
           ></img>
-          <h1>{loadedUser.username}</h1>
+          <h1>{loadedUser[0].username}</h1>
           <button
             type="button"
             className="btn btn-primary"

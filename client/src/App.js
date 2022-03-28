@@ -12,6 +12,7 @@ import Home from "./components/Home";
 import EnterSite from "./components/EnterSite";
 import NewPost from "./components/NewPost";
 import UserPage from "./components/UserPage";
+import SearchPage from "./components/SearchPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -58,6 +59,9 @@ function App() {
               </Route>
               <Route path="/user/:username">
                 <UserPage user={user} handleRerender={handleRerender} />
+              </Route>
+              <Route path="/search/:searchterm">
+                <SearchPage user={user} />
               </Route>
               <Route path="/">
                 <Home user={user} />
