@@ -32,7 +32,12 @@ function SearchPage({ user }) {
       return (
         <div
           className="card"
-          style={{ width: "30rem", marginTop: "15px", marginLeft: "30rem" }}
+          style={{
+            width: "30rem",
+            marginTop: "15px",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
         >
           <div className="card-body">
             <img

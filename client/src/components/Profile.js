@@ -41,6 +41,7 @@ function Profile({ user, setUser, handleRerender }) {
           width: "10rem",
           marginTop: "10px",
           marginRight: "10px",
+          marginLeft: "1rem",
           float: "left",
         }}
       ></img>

@@ -27,7 +27,8 @@ function Home({ user }) {
   }
 
   if (followedPosts.length > 0) {
-    followedCards = followedPosts.map((p) => {
+    const sorted = followedPosts.slice().sort((a, b) => b.id - a.id);
+    followedCards = sorted.map((p) => {
       return (
         <PostCard
           key={p.id}

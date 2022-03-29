@@ -19,12 +19,6 @@ function UserPage({ handleRerender, user }) {
       setFound(true);
     }
   }, [loadedUser]);
-  // const found = user.follows.find((f) => {
-  //   if (loadedUser) {
-  //     return f.follow_id === loadedUser.id;
-  //   }
-  // });
-  // console.log(found);
 
   const { username } = useParams();
   if (username !== userFound) {

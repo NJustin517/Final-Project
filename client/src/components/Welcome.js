@@ -11,7 +11,11 @@ function Welcome() {
         alt="Inner Peace"
         className="welcome_image"
       ></img>
-      <Link to="/enter" className="btn btn-primary btn-lg login_btn">
+      <Link
+        to="/enter"
+        className="btn btn-primary btn-lg login_btn"
+        style={{ marginBottom: "20px", marginLeft: "75rem" }}
+      >
         Login/Signup
       </Link>
     </div>

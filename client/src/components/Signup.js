@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function Signup({ setLogin, setUser }) {
   const [email, setEmail] = useState("");
@@ -10,6 +10,7 @@ function Signup({ setLogin, setUser }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [profilePic, setProfilePic] = useState("");
+  const history = useHistory();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,13 +30,20 @@ function Signup({ setLogin, setUser }) {
       }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => {
+          setUser(user);
+          history.push("/profile");
+        });
       }
     });
   }
 
   return (
-    <form onSubmit={handleSubmit} className="row g-3">
+    <form
+      onSubmit={handleSubmit}
+      className="row g-3"
+      style={{ marginTop: "4rem", marginLeft: "2rem", marginRight: "2rem" }}
+    >
       <div className="col-md-6">
         <label htmlFor="inputEmail4" className="form-label">
           Email

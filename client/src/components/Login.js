@@ -28,7 +28,10 @@ function Login({ setLogin, setUser }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      style={{ marginTop: "4rem", marginLeft: "2rem", marginRight: "2rem" }}
+    >
       <div className="row mb-3">
         <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
           Email

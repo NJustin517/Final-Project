@@ -33,7 +33,10 @@ function NewPost({ user_id, handleRerender }) {
 
   return (
     <>
-      <form onSubmit={handleSubmitPost}>
+      <form
+        onSubmit={handleSubmitPost}
+        style={{ marginTop: "4rem", marginLeft: "2rem" }}
+      >
         <div className="row mb-3">
           <label htmlFor="inputImage" className="col-sm-2 col-form-label">
             Image URL
