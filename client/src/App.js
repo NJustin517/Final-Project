@@ -13,6 +13,7 @@ import EnterSite from "./components/EnterSite";
 import NewPost from "./components/NewPost";
 import UserPage from "./components/UserPage";
 import SearchPage from "./components/SearchPage";
+import EditProfile from "./components/EditProfile";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -46,6 +47,9 @@ function App() {
               </Route>
               <Route path="/profile/new_post">
                 <NewPost user_id={user.id} handleRerender={handleRerender} />
+              </Route>
+              <Route path="/profile/edit">
+                <EditProfile user={user} handleRerender={handleRerender} />
               </Route>
               <Route path="/profile">
                 <Profile

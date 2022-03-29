@@ -46,13 +46,13 @@ function Profile({ user, setUser, handleRerender }) {
         }}
       ></img>
       <h1>{user.username}</h1>
-      <button
-        type="button"
+      <Link
+        to="/profile/edit"
         className="btn btn-primary"
         style={{ marginBottom: "5px" }}
       >
         Edit Profile
-      </button>
+      </Link>
       <br></br>
       <button onClick={handleLogOut} type="button" className="btn btn-danger">
         Log Out
@@ -61,7 +61,11 @@ function Profile({ user, setUser, handleRerender }) {
       <br></br>
       <br></br>
       <br></br>
-      {user.posts.length !== 0 ? userPosts : <h1>There are no posts!</h1>}
+      {user.posts.length !== 0 ? (
+        userPosts
+      ) : (
+        <h1 style={{ textAlign: "center" }}>There are no posts!</h1>
+      )}
     </div>
   );
 }

@@ -43,7 +43,7 @@ function Home({ user }) {
   return (
     <>
       {followedUsers === null || followedUsers.length === 0 ? (
-        <h2>
+        <h2 style={{ textAlign: "center" }}>
           Not following anyone! Search for users to follow them and fill your
           feed!
         </h2>
