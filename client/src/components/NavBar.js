@@ -49,6 +49,14 @@ function NavBar() {
                 Profile
               </Link>
             </li>
+            <li className="nav-item">
+              {/* <a className="nav-link" href="profile">
+                Profile
+              </a> */}
+              <Link to="/following" className="nav-link">
+                Following
+              </Link>
+            </li>
             {/* <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"

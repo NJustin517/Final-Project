@@ -1,34 +1,16 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { Link, useParams, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-function SearchPage({ user }) {
-  const [usersSearch, setUsersSearch] = useState("");
-  const [loadedUsers, setLoadedUsers] = useState([]);
-  const { searchterm } = useParams();
+function FollowingPage({ followedUsers }) {
   const history = useHistory();
-
-  if (searchterm !== usersSearch) {
-    setUsersSearch(searchterm);
-  }
-
-  useEffect(() => {
-    fetch(`/search/${searchterm}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setLoadedUsers(data);
-      });
-  }, [usersSearch]);
+  let followCards;
 
   function handleViewProfile(username) {
     history.push(`/user/${username}`);
   }
 
-  let userCards;
-  if (loadedUsers.length > 0) {
-    console.log(loadedUsers);
-    userCards = loadedUsers.map((u) => {
+  if (followedUsers) {
+    followCards = followedUsers.map((u) => {
       return (
         <div
           className="card"
@@ -69,9 +51,13 @@ function SearchPage({ user }) {
 
   return (
     <>
-      {loadedUsers.length === 0 ? <h3>No matching users</h3> : <>{userCards}</>}
+      {followedUsers ? (
+        <>{followCards}</>
+      ) : (
+        <h1 style={{ textAlign: "center" }}>Not Following Anyone!</h1>
+      )}
     </>
   );
 }
 
-export default SearchPage;
+export default FollowingPage;

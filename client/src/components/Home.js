@@ -3,22 +3,14 @@ import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import PostCard from "./PostCard";
 
-function Home({ user }) {
-  const [followedUsers, setFollowedUsers] = useState(null);
+function Home({
+  user,
+  followedUsers,
+  setFollowedUsers,
+  handleFollowedRerender,
+}) {
   const followedPosts = [];
   let followedCards;
-
-  useEffect(() => {
-    fetch("/followed_profiles")
-      .then((r) => r.json())
-      .then((users) => setFollowedUsers(users));
-  }, []);
-
-  function handleLikeRerender() {
-    fetch("/followed_profiles")
-      .then((r) => r.json())
-      .then((users) => setFollowedUsers(users));
-  }
 
   if (followedUsers) {
     followedUsers.forEach((user) => {
@@ -33,7 +25,7 @@ function Home({ user }) {
         <PostCard
           key={p.id}
           post={p}
-          handleRerender={handleLikeRerender}
+          handleRerender={handleFollowedRerender}
           user={user}
         />
       );

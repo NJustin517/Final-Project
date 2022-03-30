@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 
-function Welcome() {
+function Welcome({ user }) {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Welcome to Skate-Space!</h1>
@@ -11,13 +11,34 @@ function Welcome() {
         alt="Inner Peace"
         className="welcome_image"
       ></img>
-      <Link
+      {/* <Link
         to="/enter"
         className="btn btn-primary btn-lg login_btn"
-        style={{ marginBottom: "20px", marginLeft: "75rem" }}
+        style={{
+          marginBottom: "20px",
+          display: "block",
+          marginLeft: "auto",
+          marginRight: "auto",
+          width: "175px",
+        }}
       >
         Login/Signup
-      </Link>
+      </Link> */}
+      {user ? null : (
+        <Link
+          to="/enter"
+          className="btn btn-primary btn-lg login_btn"
+          style={{
+            marginBottom: "20px",
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto",
+            width: "175px",
+          }}
+        >
+          Login/Signup
+        </Link>
+      )}
     </div>
   );
 }
