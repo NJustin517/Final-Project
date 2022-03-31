@@ -3,5 +3,6 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :posts
   has_many :follows
+  has_many :likes
   # has_many :followed_users
 end

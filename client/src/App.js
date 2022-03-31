@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
+import bootstrap from "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar";
 import Welcome from "./components/Welcome";
@@ -44,9 +45,12 @@ function App() {
   }
 
   function handleFollowedRerender() {
+    handleRerender();
     fetch("/followed_profiles")
       .then((r) => r.json())
-      .then((users) => setFollowedUsers(users));
+      .then((users) => {
+        setFollowedUsers(users);
+      });
   }
 
   return (

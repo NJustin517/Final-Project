@@ -50,9 +50,6 @@ function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              {/* <a className="nav-link" href="profile">
-                Profile
-              </a> */}
               <Link to="/following" className="nav-link">
                 Following
               </Link>

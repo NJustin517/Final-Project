@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Comments from "./Comments";
 
 function PostCard({ post, handleRerender, user }) {
   const [likes, setLikes] = useState(post.likes);
+  const likedPost = user.likes.find((like) => {
+    return like.post_id === post.id;
+  });
 
   function handleDeletePost() {
     fetch(`/posts/${post.id}`, {
@@ -17,20 +18,69 @@ function PostCard({ post, handleRerender, user }) {
   }
 
   function handleLike() {
-    fetch(`/posts/${post.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        likes: likes + 1,
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        setLikes(likes + 1);
-        handleRerender();
-      }
-    });
+    if (!likedPost) {
+      fetch("/likes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: user.id,
+          post_id: post.id,
+        }),
+      }).then((res) => {
+        if (res.ok) {
+          fetch(`/posts/${post.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              likes: likes + 1,
+            }),
+          }).then((res) => {
+            if (res.ok) {
+              setLikes(likes + 1);
+              handleRerender();
+            }
+          });
+        }
+      });
+    } else {
+      fetch(`/likes/${likedPost.id}`, {
+        method: "DELETE",
+      }).then((data) => {
+        fetch(`/posts/${post.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes: likes - 1,
+          }),
+        }).then((res) => {
+          if (res.ok) {
+            setLikes(likes - 1);
+            handleRerender();
+          }
+        });
+      });
+    }
+
+    // fetch(`/posts/${post.id}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     likes: likes + 1,
+    //   }),
+    // }).then((res) => {
+    //   if (res.ok) {
+    //     setLikes(likes + 1);
+    //     handleRerender();
+    //   }
+    // });
   }
 
   return (
@@ -49,7 +99,7 @@ function PostCard({ post, handleRerender, user }) {
         <h6 className="card-title">{post.username}</h6>
         <p className="card-text">{post.caption}</p>
         <a className="btn btn-primary" onClick={handleLike}>
-          ♥
+          {likedPost ? "♥" : "♡"}
         </a>
         {post.username === user.username ? (
           <a
@@ -76,6 +126,6 @@ function PostCard({ post, handleRerender, user }) {
   );
 }
 
-// ♥
+// ♥ ♡
 
 export default PostCard;

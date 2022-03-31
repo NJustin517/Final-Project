@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :follows
   # has_many :followed_users, through: :follows, foreign_key: :follow_id, source: :user
   # has_many :followed_posts, through: :followed_users, source: :posts
+  has_many :likes
   has_many :comments
   has_many :reports, through: :posts
 

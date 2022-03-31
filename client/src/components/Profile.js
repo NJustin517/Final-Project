@@ -12,7 +12,9 @@ function Profile({ user, setUser, handleRerender }) {
     });
   }
 
-  const userPosts = user.posts.map((p) => {
+  const sortedPosts = user.posts.slice().sort((a, b) => b.id - a.id);
+
+  const userPosts = sortedPosts.map((p) => {
     return (
       <PostCard
         key={p.id}
