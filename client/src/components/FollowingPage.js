@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 
 function FollowingPage({ followedUsers }) {
@@ -24,7 +24,7 @@ function FollowingPage({ followedUsers }) {
           <div className="card-body">
             <img
               src={u.profile_picture}
-              alt="Profile Picture"
+              alt="Profile Pic"
               style={{
                 width: "10rem",
                 marginTop: "10px",

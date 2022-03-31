@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Comments from "./Comments";
 
 function PostCard({ post, handleRerender, user }) {

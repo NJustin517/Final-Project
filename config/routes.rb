@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :likes
-  resources :reports
-  resources :comments
-  resources :posts
-  resources :follows
-  resources :users
+  resources :likes, only: [:index, :create, :destroy]
+  # resources :reports
+  resources :comments, only: [:index, :create]
+  resources :posts, only: [:index, :create, :update, :destroy]
+  resources :follows, only: [:index, :create, :destroy]
+  resources :users, only: [:index, :create, :update, :show]
 
   get "/me", to: "users#show"
   post "/signup", to: "users#create"

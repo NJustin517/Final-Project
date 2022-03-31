@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Signup({ setLogin, setUser }) {
   const [email, setEmail] = useState("");

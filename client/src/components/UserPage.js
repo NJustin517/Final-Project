@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import PostCard from "./PostCard";
 
 function UserPage({ handleRerender, user }) {
@@ -83,7 +82,7 @@ function UserPage({ handleRerender, user }) {
         <>
           <img
             src={loadedUser.profile_picture}
-            alt="Profile Picture"
+            alt="Profile Pic"
             style={{
               width: "10rem",
               marginTop: "10px",

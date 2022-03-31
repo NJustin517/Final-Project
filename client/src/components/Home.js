@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import PostCard from "./PostCard";
 
 function Home({
@@ -11,6 +9,10 @@ function Home({
 }) {
   const followedPosts = [];
   let followedCards;
+
+  useEffect(() => {
+    handleFollowedRerender();
+  }, []);
 
   if (followedUsers) {
     followedUsers.forEach((user) => {

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
 
 function NewPost({ user_id, handleRerender }) {
   const [imageURL, setImageURL] = useState("");
@@ -65,12 +63,12 @@ function NewPost({ user_id, handleRerender }) {
             ></input>
           </div>
         </div>
-        {imageURL != "" ? (
+        {imageURL !== "" ? (
           <>
             <h4>Image Preview</h4>
             <img
               src={imageURL}
-              alt="picture to be posted"
+              alt="pic to be posted"
               style={{ width: "20%" }}
             ></img>
           </>

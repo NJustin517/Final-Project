@@ -91,12 +91,12 @@ function EditProfile({ user, handleRerender }) {
             ></input>
           </div>
         </div>
-        {profilePic != "" ? (
+        {profilePic !== "" ? (
           <>
             <h4>Image Preview</h4>
             <img
               src={profilePic}
-              alt="picture to be posted"
+              alt="pic to be posted"
               style={{ width: "20%" }}
             ></img>
           </>

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function Comments({ post, user, handleRerender }) {
   const [newComment, setNewComment] = useState("");

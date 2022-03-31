@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import PostCard from "./PostCard";
 
@@ -38,7 +37,7 @@ function Profile({ user, setUser, handleRerender }) {
       </Link>
       <img
         src={user.profile_picture}
-        alt="Profile Picture"
+        alt="Profile Pic"
         style={{
           width: "10rem",
           marginTop: "10px",
