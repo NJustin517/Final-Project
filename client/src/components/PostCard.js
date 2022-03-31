@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Comments from "./Comments";
 
 function PostCard({ post, handleRerender, user }) {
-  const [likes, setLikes] = useState(post.likes);
+  const [likes, setLikes] = useState(post.like_count);
   const likedPost = user.likes.find((like) => {
     return like.post_id === post.id;
   });
+
+  console.log(post);
 
   function handleDeletePost() {
     fetch(`/posts/${post.id}`, {
@@ -36,7 +38,7 @@ function PostCard({ post, handleRerender, user }) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              likes: likes + 1,
+              like_count: likes + 1,
             }),
           }).then((res) => {
             if (res.ok) {
@@ -56,7 +58,7 @@ function PostCard({ post, handleRerender, user }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            likes: likes - 1,
+            like_count: likes - 1,
           }),
         }).then((res) => {
           if (res.ok) {
@@ -119,7 +121,7 @@ function PostCard({ post, handleRerender, user }) {
         >
           Delete
         </a> */}
-        <p>{post.likes} Likes</p>
+        <p>{post.like_count} Likes</p>
         <Comments post={post} user={user} handleRerender={handleRerender} />
       </div>
     </div>

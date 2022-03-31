@@ -14,7 +14,7 @@ function NewPost({ user_id, handleRerender }) {
       body: JSON.stringify({
         user_id: user_id,
         image: imageURL,
-        likes: 0,
+        like_count: 0,
         caption,
       }),
     }).then((r) => {

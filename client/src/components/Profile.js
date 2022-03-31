@@ -24,8 +24,6 @@ function Profile({ user, setUser, handleRerender }) {
     );
   });
 
-  console.log(userPosts);
-
   return (
     <div>
       <Link
