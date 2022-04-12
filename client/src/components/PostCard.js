@@ -114,13 +114,6 @@ function PostCard({ post, handleRerender, user }) {
         ) : (
           <p></p>
         )}
-        {/* <a
-          className="btn btn-danger"
-          onClick={handleDeletePost}
-          style={{ float: "right" }}
-        >
-          Delete
-        </a> */}
         <p>{post.like_count} Likes</p>
         <Comments post={post} user={user} handleRerender={handleRerender} />
       </div>
