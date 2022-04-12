@@ -13,6 +13,7 @@
 This project is built using React.js for the frontend, with additionaly styling from Bootstrap, while the backend relies on PostgresSQL by way of Ruby on Rails.
 
 <p><b>To install and set up:</b></p>
+<br/>
 If you fork and clone the repo onto your system, all you need to do is run:
 `bundle install` to get the backend dependencies taken care of, and then:
 `npm install --prefix client` to install the frontend dependencies and packages.
