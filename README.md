@@ -10,6 +10,12 @@
 
 <p>The main idea behind Skate-Space was to create an application that skateboarders could use to share their photos, art, culture, and experiences. As a kid, I loved skateboarding. It kept me out of trouble, and provided a healthy output for all of my stresses and energy. Since then, the sport has skyrocketed in popularity, going so far as to become an Olympic sport. The community of skateboarders is HUGE, and having a dedicated social media app would be a welcomed resource to keeping up with everything going on in the industry.</p>
 
+<h3>As far as the functionality of the site goes, as a user you can:</h3>
+<ul>
+  <li>Create an account</li>
+  <li>Login and Logout of a created account (uses sessions/cookies to enable auto sign-in)</li>
+</ul>
+
 This project is built using React.js for the frontend, with additionaly styling from Bootstrap, while the backend relies on PostgresSQL by way of Ruby on Rails.
 
 ### To install and set up:
