@@ -14,6 +14,14 @@
 <ul>
   <li>Create an account</li>
   <li>Login and Logout of a created account (uses sessions/cookies to enable auto sign-in)</li>
+  <li>Search for users, and get a match of all users containing the entered string</li>
+  <li>Follow users to see their posts on your main homepage, and unfollow them to remove their posts</li>
+  <li>View a list of all the users you currently follow</li>
+  <li>Create a post with a picture (using a URL link) and description</li>
+  <li>Delete your own posts</li>
+  <li>Comment on posts</li>
+  <li>Like/unlike posts</li>
+  <li>Click on the username of a comment to go to that user's page</li>
 </ul>
 
 This project is built using React.js for the frontend, with additionaly styling from Bootstrap, while the backend relies on PostgresSQL by way of Ruby on Rails.
